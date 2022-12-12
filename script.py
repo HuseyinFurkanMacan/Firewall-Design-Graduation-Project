@@ -24,3 +24,15 @@ def SocialMedia(table='filter'):
    #Instagram
    rule.src = "157.240.238.174"
    chain.insert_rule(rule)
+
+def Add(table='filter'):
+   giris = input("Enter the ip that you want to block:")
+   rule = iptc.Rule()
+   rule.src = giris
+   target = iptc.Target(rule, "DROP")
+   rule.target = target
+   chain.insert_rule(rule)
+
+def Delete(table='filter'):
+   table_result=iptc.easy.flush_table(table=table,ipv6=False)
+   print(table_result)
